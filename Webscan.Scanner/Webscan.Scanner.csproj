@@ -6,6 +6,12 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Webscan</Authors>
     <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+    <Copyright>MIT</Copyright>
+    <PackageProjectUrl>https://github.com/CoryRolstad/Webscan.Scanner</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/CoryRolstad/Webscan.Scanner</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+    <PackageTags>Webscanner</PackageTags>
+    <Version>0.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
