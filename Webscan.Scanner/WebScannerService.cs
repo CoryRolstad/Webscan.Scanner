@@ -26,8 +26,14 @@ namespace Webscan.Scanner
         }
 
         public async Task<string> GetDocument(HttpRequestMessage request)
-        {            
+        {
+            if (request == null) throw new ArgumentNullException($"{nameof(request)} Cannot be null.");            
+            _logger.LogDebug($"Executing Http Request: {request.RequestUri.ToString()}");
             HttpResponseMessage result = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+
+            _logger.LogDebug($"HTTP Request Comlete: {request.RequestUri.ToString()}");
+            _logger.LogDebug($"\tResult HTTP Code: {result.StatusCode}");
+
             result.EnsureSuccessStatusCode();
             using (Stream responseStream = await result.Content.ReadAsStreamAsync())
             {
@@ -40,7 +46,13 @@ namespace Webscan.Scanner
 
         public async Task<string> GetXpathText(string markup, string xPath)
         {
+            if (string.IsNullOrWhiteSpace(markup)) throw new ArgumentNullException($"{nameof(markup)} cannot be null or whitespace.");
+            if (string.IsNullOrWhiteSpace(xPath)) throw new ArgumentNullException($"{nameof(xPath)} cannot be null or whitespace.");
             //Create a virtual request to specify the document to load (here from our fixed string)
+
+            _logger.LogDebug("GetXpathText values:");
+            _logger.LogDebug($"\tMarkup: {markup}");
+            _logger.LogDebug($"\tXpath: {xPath}");
             var document = await _context.OpenAsync(req => req.Content(markup));
             return document.Body.SelectSingleNode(xPath).TextContent;
         }

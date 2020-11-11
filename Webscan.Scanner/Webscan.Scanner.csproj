@@ -4,14 +4,14 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <Description>Scan HttpClient xPath Results</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>Webscan</Authors>
-    <PackageReleaseNotes>Updated Documentation and changed name of function</PackageReleaseNotes>
+    <Authors>Cory Rolstad</Authors>
+    <PackageReleaseNotes>Added Error Handling, 93% Test Coverage, Documentation, 1.0 Release Candidate</PackageReleaseNotes>
     <Copyright>MIT</Copyright>
     <PackageProjectUrl>https://github.com/CoryRolstad/Webscan.Scanner</PackageProjectUrl>
     <RepositoryUrl>https://github.com/CoryRolstad/Webscan.Scanner</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>Webscanner</PackageTags>
-    <Version>0.2.0</Version>
+    <Version>1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

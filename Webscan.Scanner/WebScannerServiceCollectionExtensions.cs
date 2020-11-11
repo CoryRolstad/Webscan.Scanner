@@ -1,7 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Webscan.Scanner
 {
@@ -11,7 +9,7 @@ namespace Webscan.Scanner
         {
             ValidateSettings(services, webScannerSettings);
 
-            // Register our WebScannerServiceHttpClient with a delegate handler
+            // Register our WebScannerHttpClient with a delegate handler
             services.AddHttpClient("WebScannerHttpClient", client =>
             {
                 //UriBuilder uribuilder = new UriBuilder()
@@ -32,7 +30,7 @@ namespace Webscan.Scanner
         private static void ValidateSettings(IServiceCollection services, WebScannerSettings webScannerSettings)
         {
             if (services == null) throw new ArgumentNullException($"{nameof(services)} cannot be null");
-            //if (webScannerSettings == null) throw new ArgumentNullException($"{nameof(webScannerSettings)} cannot be null");
+            if (webScannerSettings == null) throw new ArgumentNullException($"{nameof(webScannerSettings)} cannot be null");
             //if (string.IsNullOrWhiteSpace(webScannerSettings.Uri)) throw new ArgumentNullException($"{nameof(webScannerSettings.Uri)} cannot be null");
         }
     }
