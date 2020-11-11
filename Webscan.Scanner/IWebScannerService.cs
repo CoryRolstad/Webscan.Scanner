@@ -13,7 +13,7 @@ namespace Webscan.Scanner
         /// </summary>
         /// <param name="request">HttpRequestMessage</param>
         /// <returns> Task of string </returns>
-        public Task<string> GetPageHtml(HttpRequestMessage request);
+        public Task<string> GetDocument(HttpRequestMessage request);
 
         /// <summary>
         /// GetXpathText - Retrieves the Text in a given Xpath Element

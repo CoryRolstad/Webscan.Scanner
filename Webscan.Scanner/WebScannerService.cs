@@ -25,7 +25,7 @@ namespace Webscan.Scanner
             _httpClient = httpClientFactory.CreateClient("WebScannerHttpClient") ?? throw new ArgumentNullException(nameof(httpClientFactory));
         }
 
-        public async Task<string> GetPageHtml(HttpRequestMessage request)
+        public async Task<string> GetDocument(HttpRequestMessage request)
         {            
             HttpResponseMessage result = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
             result.EnsureSuccessStatusCode();
