@@ -5,13 +5,13 @@
     <Description>Scan HttpClient xPath Results</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Cory Rolstad</Authors>
-    <PackageReleaseNotes>Added Error Handling, 93% Test Coverage, Documentation, 1.0 Release Candidate</PackageReleaseNotes>
+    <PackageReleaseNotes>Added ReadMe.txt Popup</PackageReleaseNotes>
     <Copyright>MIT</Copyright>
     <PackageProjectUrl>https://github.com/CoryRolstad/Webscan.Scanner</PackageProjectUrl>
     <RepositoryUrl>https://github.com/CoryRolstad/Webscan.Scanner</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>Webscanner</PackageTags>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,6 +19,7 @@
     <PackageReference Include="AngleSharp.XPath" Version="1.1.7" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.9" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.9" />
+    <None Include="ReadMe.txt" pack="true" PackagePath="." />
   </ItemGroup>
 
 </Project>
