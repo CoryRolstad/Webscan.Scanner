@@ -22,7 +22,10 @@ namespace Webscan.Scanner
 
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             if (httpClientFactory == null) throw new ArgumentNullException(nameof(httpClientFactory));
-            _httpClient = httpClientFactory.CreateClient("WebScannerHttpClient") ?? throw new ArgumentNullException(nameof(httpClientFactory));
+            _httpClient = httpClientFactory.CreateClient() ?? throw new ArgumentNullException(nameof(httpClientFactory));
+
+            _httpClient.Timeout = new TimeSpan(0, 0, 5);
+
         }
 
         public async Task<string> GetDocument(HttpRequestMessage request)

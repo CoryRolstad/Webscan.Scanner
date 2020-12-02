@@ -10,18 +10,20 @@ namespace Webscan.Scanner
             ValidateSettings(services, webScannerSettings);
 
             // Register our WebScannerHttpClient with a delegate handler
-            services.AddHttpClient("WebScannerHttpClient", client =>
-            {
-                //UriBuilder uribuilder = new UriBuilder()
-                //{
-                //    Host = webScannerSettings.Uri,
-                //    Scheme = "https"
-                //};
-                //client.BaseAddress = uribuilder.Uri;
-                //client.DefaultRequestHeaders.Accept.Clear();
-                //client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-                //client.DefaultRequestHeaders.ConnectionClose = true;
-            });
+            //services.AddHttpClient("WebScannerHttpClient", client =>
+            //{
+            //UriBuilder uribuilder = new UriBuilder()
+            //{
+            //    Host = webScannerSettings.Uri,
+            //    Scheme = "https"
+            //};
+            //client.BaseAddress = uribuilder.Uri;
+            //client.DefaultRequestHeaders.Accept.Clear();
+            //client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            //client.DefaultRequestHeaders.ConnectionClose = true;
+            //});
+
+            services.AddHttpClient();
 
             services.AddTransient<IWebScannerService, WebScannerService>();
             return services; 
