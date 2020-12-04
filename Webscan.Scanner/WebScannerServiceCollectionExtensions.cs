@@ -9,6 +9,7 @@ namespace Webscan.Scanner
         {
             ValidateSettings(services, webScannerSettings);
 
+            services.AddSingleton(webScannerSettings);
             // Register our WebScannerHttpClient with a delegate handler
             //services.AddHttpClient("WebScannerHttpClient", client =>
             //{
@@ -33,6 +34,7 @@ namespace Webscan.Scanner
         {
             if (services == null) throw new ArgumentNullException($"{nameof(services)} cannot be null");
             if (webScannerSettings == null) throw new ArgumentNullException($"{nameof(webScannerSettings)} cannot be null");
+
             //if (string.IsNullOrWhiteSpace(webScannerSettings.Uri)) throw new ArgumentNullException($"{nameof(webScannerSettings.Uri)} cannot be null");
         }
     }

@@ -23,6 +23,12 @@ namespace Webscan.Scanner
         /// <returns>The string of the element requested</returns>
         public Task<string> GetXpathText(string markup, string xPath);
 
+        /// <summary>
+        /// GetDocumentStealth makes the request appear as it is coming from a webbrowswer.
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public Task<string> GetDocumentStealth(HttpRequestMessage request);
 
     }
 }

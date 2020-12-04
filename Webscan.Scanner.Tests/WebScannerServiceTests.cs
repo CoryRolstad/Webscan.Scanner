@@ -74,7 +74,7 @@ namespace Webscan.Scanner.Tests
             //Act, Assert
             Assert.Throws<ArgumentNullException>(() =>
             {
-                WebScannerService ServerInventoryService = new WebScannerService(null, _loggerMock.Object);
+                WebScannerService ServerInventoryService = new WebScannerService(null, _loggerMock.Object, new WebScannerSettings());
             });
         }
 
@@ -85,7 +85,18 @@ namespace Webscan.Scanner.Tests
             //Act, Assert
             Assert.Throws<ArgumentNullException>(() =>
             {
-                WebScannerService ServerInventoryService = new WebScannerService(_httpClientFactoryMock.Object, null);
+                WebScannerService ServerInventoryService = new WebScannerService(_httpClientFactoryMock.Object, null, new WebScannerSettings());
+            });
+        }
+
+        [Fact]
+        [Trait("Category", "WebScannerService")]
+        public void WebScannerService_InitializeNullConfig_ThrowsArgumentNullException()
+        {
+            //Act, Assert
+            Assert.Throws<ArgumentNullException>(() =>
+            {
+                WebScannerService ServerInventoryService = new WebScannerService(_httpClientFactoryMock.Object, _loggerMock.Object, null);
             });
         }
 
@@ -122,7 +133,7 @@ namespace Webscan.Scanner.Tests
             HttpRequestMessage requestNullReference = new HttpRequestMessage();
 
             // Act
-            WebScannerService webScannerService = new WebScannerService(_httpClientFactoryMock.Object, _loggerMock.Object);
+            WebScannerService webScannerService = new WebScannerService(_httpClientFactoryMock.Object, _loggerMock.Object, new WebScannerSettings());
 
             //Assert
             await Assert.ThrowsAsync<ArgumentNullException>( async () =>
@@ -169,7 +180,7 @@ namespace Webscan.Scanner.Tests
             _httpClientFactoryMock.Setup(hcf => hcf.CreateClient(It.IsAny<string>())).Returns(httpClient);
 
             // Act
-            WebScannerService webScannerService = new WebScannerService(_httpClientFactoryMock.Object, _loggerMock.Object);
+            WebScannerService webScannerService = new WebScannerService(_httpClientFactoryMock.Object, _loggerMock.Object, new WebScannerSettings());
 
             //Assert
             await Assert.ThrowsAsync<HttpRequestException>(async () =>
@@ -211,7 +222,7 @@ namespace Webscan.Scanner.Tests
             _httpClientFactoryMock.Setup(hcf => hcf.CreateClient(It.IsAny<string>())).Returns(httpClient);
 
             // Act
-            WebScannerService webScannerService = new WebScannerService(_httpClientFactoryMock.Object, _loggerMock.Object);
+            WebScannerService webScannerService = new WebScannerService(_httpClientFactoryMock.Object, _loggerMock.Object, new WebScannerSettings());
             string expected = _resultHtmlString;
             string actual = await webScannerService.GetDocument(_httpRequestMessage);
 
@@ -254,7 +265,7 @@ namespace Webscan.Scanner.Tests
             HttpRequestMessage requestNullReference = new HttpRequestMessage();
 
             // Act
-            WebScannerService webScannerService = new WebScannerService(_httpClientFactoryMock.Object, _loggerMock.Object);
+            WebScannerService webScannerService = new WebScannerService(_httpClientFactoryMock.Object, _loggerMock.Object, new WebScannerSettings());
 
             //Assert
             await Assert.ThrowsAsync<ArgumentNullException>(async () =>
@@ -311,7 +322,7 @@ namespace Webscan.Scanner.Tests
             HttpRequestMessage requestNullReference = new HttpRequestMessage();
 
             // Act
-            WebScannerService webScannerService = new WebScannerService(_httpClientFactoryMock.Object, _loggerMock.Object);
+            WebScannerService webScannerService = new WebScannerService(_httpClientFactoryMock.Object, _loggerMock.Object, new WebScannerSettings());
             string actual = await webScannerService.GetXpathText(_resultHtmlString, _xPathHtmlString);
 
             //Assert    

@@ -5,13 +5,13 @@
     <Description>Scan HttpClient xPath Results</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Cory Rolstad</Authors>
-    <PackageReleaseNotes>moved di back to transient</PackageReleaseNotes>
+    <PackageReleaseNotes>Added Configuration timeout to stealth function</PackageReleaseNotes>
     <Copyright>MIT</Copyright>
     <PackageProjectUrl>https://github.com/CoryRolstad/Webscan.Scanner</PackageProjectUrl>
     <RepositoryUrl>https://github.com/CoryRolstad/Webscan.Scanner</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>Webscanner</PackageTags>
-    <Version>1.0.4</Version>
+    <Version>1.1.4</Version>
   </PropertyGroup>
 
   <ItemGroup>

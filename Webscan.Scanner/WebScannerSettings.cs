@@ -8,5 +8,6 @@ namespace Webscan.Scanner
     public class WebScannerSettings
     {
         public string Uri { get; set; }
+        public int HttpRequestTimeOutInSeconds { get; set; }
     }
 }

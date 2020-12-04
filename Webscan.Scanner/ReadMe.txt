@@ -18,7 +18,8 @@ Use the Webscan.Scanner MicroService Settings format below within your appsettin
 {
   ...
   "WebScannerSettings": {
-    "Uri": "https://www.test.com"
+    "Uri": "https://www.test.com",
+    "HttpRequestTimeOutInSeconds": 30
   },
   ...
 }
