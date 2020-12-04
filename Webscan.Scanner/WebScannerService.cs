@@ -1,7 +1,6 @@
 ﻿using AngleSharp;
 using AngleSharp.XPath;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using System;
 using System.IO;
 using System.IO.Compression;
@@ -35,11 +34,7 @@ namespace Webscan.Scanner
             using(HttpClient httpClient = _httpClientFactory.CreateClient())
             {
                 httpClient.Timeout = new TimeSpan(0, 0, _webScannerSettings.HttpRequestTimeOutInSeconds);
-                _logger.LogDebug($"Executing Http Request: {request.RequestUri.ToString()}");
                 HttpResponseMessage result = await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
-
-                _logger.LogDebug($"HTTP Request Comlete: {request.RequestUri.ToString()}");
-                _logger.LogDebug($"\tResult HTTP Code: {result.StatusCode}");
 
                 result.EnsureSuccessStatusCode();
                 using (Stream responseStream = await result.Content.ReadAsStreamAsync())
@@ -85,9 +80,6 @@ namespace Webscan.Scanner
             if (string.IsNullOrWhiteSpace(xPath)) throw new ArgumentNullException($"{nameof(xPath)} cannot be null or whitespace.");
             //Create a virtual request to specify the document to load (here from our fixed string)
 
-            _logger.LogDebug("GetXpathText values:");
-            _logger.LogDebug($"\tMarkup: {markup}");
-            _logger.LogDebug($"\tXpath: {xPath}");
             var document = await _context.OpenAsync(req => req.Content(markup));
             return document.Body.SelectSingleNode(xPath).TextContent;
         }
