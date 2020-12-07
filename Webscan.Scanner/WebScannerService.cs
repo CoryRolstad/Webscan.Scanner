@@ -55,10 +55,11 @@ namespace Webscan.Scanner
             using (HttpClient httpClient = _httpClientFactory.CreateClient())
             {
                 httpClient.Timeout = new TimeSpan(0, 0, _webScannerSettings.HttpRequestTimeOutInSeconds);
-                request.Headers.TryAddWithoutValidation("Accept", "text/html,application/xhtml+xml,application/xml");
+                request.Headers.TryAddWithoutValidation("Accept", "*/*");
                 request.Headers.TryAddWithoutValidation("Accept-Encoding", "gzip, deflate");
-                request.Headers.TryAddWithoutValidation("User-Agent", "Mozilla/5.0 (Windows NT 6.2; WOW64; rv:19.0) Gecko/20100101 Firefox/19.0");
+                request.Headers.TryAddWithoutValidation("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36");
                 request.Headers.TryAddWithoutValidation("Accept-Charset", "ISO-8859-1");
+                request.Headers.TryAddWithoutValidation("Connection", "keep-alive");
 
                 using (var response = await httpClient.SendAsync(request).ConfigureAwait(false))
                 {
