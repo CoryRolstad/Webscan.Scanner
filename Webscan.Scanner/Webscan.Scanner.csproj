@@ -5,13 +5,14 @@
     <Description>Scan HttpClient xPath Results</Description>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Cory Rolstad</Authors>
-    <PackageReleaseNotes>Changed some headers so it would work with Best Buy</PackageReleaseNotes>
+    <PackageReleaseNotes>Added Puppeteersharp to render json.</PackageReleaseNotes>
     <Copyright>MIT</Copyright>
     <PackageProjectUrl>https://github.com/CoryRolstad/Webscan.Scanner</PackageProjectUrl>
     <RepositoryUrl>https://github.com/CoryRolstad/Webscan.Scanner</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>Webscanner</PackageTags>
-    <Version>1.1.6</Version>
+    <Version>1.1.7</Version>
+    <UserSecretsId>7c7ea80b-a86e-409a-b944-480810dd626f</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,6 +20,7 @@
     <PackageReference Include="AngleSharp.XPath" Version="1.1.7" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+    <PackageReference Include="PuppeteerSharp" Version="2.0.4" />
     <None Include="ReadMe.txt" pack="true" PackagePath="." />
   </ItemGroup>
 

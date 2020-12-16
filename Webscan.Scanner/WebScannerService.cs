@@ -1,6 +1,7 @@
 ﻿using AngleSharp;
 using AngleSharp.XPath;
 using Microsoft.Extensions.Logging;
+using PuppeteerSharp;
 using System;
 using System.IO;
 using System.IO.Compression;
@@ -25,7 +26,13 @@ namespace Webscan.Scanner
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             if (httpClientFactory == null) throw new ArgumentNullException($"{nameof(httpClientFactory)} cannot be null");
             _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException($"{nameof(httpClientFactory)} cannot be null");
-            _webScannerSettings = webScannerSettings ?? throw new ArgumentNullException($"{nameof(webScannerSettings)} cannot be null");            
+            _webScannerSettings = webScannerSettings ?? throw new ArgumentNullException($"{nameof(webScannerSettings)} cannot be null");
+            DownloadPuppeteerBrowswer().Wait(); 
+        }
+
+        public async Task DownloadPuppeteerBrowswer()
+        {
+            await new BrowserFetcher().DownloadAsync(BrowserFetcher.DefaultRevision);
         }
 
         public async Task<string> GetDocument(HttpRequestMessage request)
@@ -74,6 +81,35 @@ namespace Webscan.Scanner
             }            
         }
 
+        public async Task<string> GetDocumentWaitForSelector(HttpRequestMessage request, string selector)
+        {
+            using (var browser = await Puppeteer.LaunchAsync(new LaunchOptions() { Headless = true }))
+            {
+                using (var page = await browser.NewPageAsync())
+                {
+                    string userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36";
+                    await page.SetUserAgentAsync(userAgent);
+                    await page.GoToAsync(request.RequestUri.ToString());
+                    await page.WaitForSelectorAsync(selector);
+                    return await page.GetContentAsync();
+                }
+            }
+        }
+
+        public async Task<string> GetDocumentWaitForXpath(HttpRequestMessage request, string xPath)
+        {
+            using (var browser = await Puppeteer.LaunchAsync(new LaunchOptions() { Headless = true }))
+            {
+                using (var page = await browser.NewPageAsync())
+                {
+                    string userAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 11_0_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36";
+                    await page.SetUserAgentAsync(userAgent);
+                    await page.GoToAsync(request.RequestUri.ToString());
+                    await page.WaitForXPathAsync(xPath);
+                    return await page.GetContentAsync();
+                }
+            }
+        }
 
         public async Task<string> GetXpathText(string markup, string xPath)
         {

@@ -30,5 +30,24 @@ namespace Webscan.Scanner
         /// <returns></returns>
         public Task<string> GetDocumentStealth(HttpRequestMessage request);
 
+        /// <summary>
+        /// GetDocumentWaitForXpath uses Puppeteer headless browser behind the scenes and will render the javascript and dom elements correctly.  
+        /// This request queries the url and waits for the Xpath element to render properly before returning the document.
+        /// </summary>
+        /// <param name="request">HttpRequestMessage that is requested</param>
+        /// <param name="xPath">XPath of the item that we are waiting to render before returning</param>
+        /// <returns>The Document that was queried in a string</returns>
+        public Task<string> GetDocumentWaitForXpath(HttpRequestMessage request, string xPath);
+
+
+        /// <summary>
+        /// GetDocumentWaitForSelectoruses Puppeteer headless browser behind the scenes and will render the javascript and dom elements correctly.  
+        /// This request queries the url and waits for the dom element to render properly before returning the document.
+        /// </summary>
+        /// <param name="request">HttpRequestMessage that is requested</param>
+        /// <param name="selector">CSS Selector of the item that we are waiting to render before returning</param>
+        /// <returns>The Document that was queried in a string</returns>
+        public Task<string> GetDocumentWaitForSelector(HttpRequestMessage request, string selector);
+
     }
 }
